@@ -5,7 +5,7 @@
 - 22471A05D7 — **Vatram Bhavana** ( [LinkedIn](https://linkedin.com/in/xxxxxxxxxx) )
 _Work Done: xxxxxxxxxx_
 
-- 22471A05D2 **Azhar Shaik Mothad** ( [LinkedIn](https://linkedin.com/in/xxxxxxxxxx) )
+- 22471A05D2 **Azhar Shaik Mothad** ( [LinkedIn](https://www.linkedin.com/in/azhar-shaik-mothad-851b29287/) )
 _Work Done: xxxxxxxxxx_
 
 - 22471A05C7 — **Shaik Afreen Neha** ( [LinkedIn](https://linkedin.com/in/xxxxxxxxxx) )
