@@ -2,14 +2,14 @@
 # Team Number – Project Title
 
 ## Team Info
-- 22471A05D7 — **Vatram Bhavana** ( [LinkedIn](https://linkedin.com/in/xxxxxxxxxx) )
-_Work Done: xxxxxxxxxx_
+- 22471A05D7 — **Vatram Bhavana** ( [LinkedIn](https://www.linkedin.com/in/bhavana-vatram-103766364/) )
+_Work Done: Project planning and coordination, model design, preprocessing strategy, training and evaluation of the Residual Attention–BiLSTM model, final documentation.
 
 - 22471A05D2 **Azhar Shaik Mothad** ( [LinkedIn](https://www.linkedin.com/in/azhar-shaik-mothad-851b29287/) )
-_Work Done: xxxxxxxxxx_
+_Work Done: Dataset analysis, Exploratory Data Analysis (EDA), feature preprocessing, implementation support, and result validation.
 
 - 22471A05C7 — **Shaik Afreen Neha** ( [LinkedIn](https://linkedin.com/in/xxxxxxxxxx) )
-_Work Done: xxxxxxxxxx_
+_Work Done: Literature survey, paper reference study, report writing support, testing analysis, and presentation preparation.
 
 
 
