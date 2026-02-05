@@ -1,0 +1,160 @@
+/* ===============================
+   GLOBAL THEME
+================================ */
+:root { 
+   /* smoke/sky white */ 
+   --card-bg:whiteSmoke;
+   
+    
+    --radius: 20px; 
+    --shadow-soft: 0 8px 24px rgba(8, 6, 6, 0.06); 
+  } 
+  
+
+
+body {
+ 
+  
+  
+  padding-top: 45px;
+}
+
+/* ===============================
+   NAVBAR (light clean look)
+================================ */
+/* ✅ FIXED NAVBAR */
+.navbar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  padding-bottom: 20px;
+  z-index: 1050;
+  background: #4660e4 !important;
+  
+}
+
+/* ✅ BRAND */
+.navbar-brand {
+  font-weight: 900;
+  color: white !important;
+}
+
+
+/* ===============================
+   HERO SECTION
+================================ */
+
+
+/* Make hero section wider */
+.container {
+  max-width: 1400px;   /* increase width */
+}
+
+/* Optional: add more padding */
+.home-hero-my {
+  padding: 80px 0;
+  background: white;
+}
+
+/* Optional: slightly bigger image */
+.hero-image-wrap {
+  max-width: 900px;
+}
+
+.hero-image {
+  width: 100%;
+  height: auto;
+  border-radius: 16px;
+}
+
+/* Buttons */
+.btn-primary {
+  
+  padding: 10px 24px;
+  font-weight: 600;
+  border-radius: 10px;
+}
+
+.btn-outline-primary {
+  
+  padding: 10px 24px;
+  font-weight: 600;
+  border-radius: 10px;
+}
+
+/* ===============================
+   FEATURE CARDS
+================================ */
+.feature{
+  color: rgb(219, 72, 72);
+}
+.feature-card {
+  border: none;
+  border-radius: var(--radius);
+  background: whitesmoke;
+  box-shadow: var(--shadow-soft);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.feature-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 14px 36px rgba(0,0,0,0.12);
+}
+
+/* ===============================
+   HOW IT WORKS STEPS
+================================ */
+.step {
+  background: var(--card-bg);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-soft);
+  transition: transform 0.3s ease;
+}
+
+.step:hover {
+  transform: translateY(-5px);
+}
+
+.step-icon {
+  font-size: 2.2rem;
+}
+
+/* ===============================
+   TESTIMONIAL CARDS
+================================ */
+.card {
+  border: none;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-soft);
+  
+}
+
+/* ===============================
+   CTA SECTION
+================================ */
+section.text-center {
+  background: white;
+}
+
+/* ===============================
+   SMALL HELPERS
+================================ */
+
+
+/* ===============================
+   RESPONSIVE
+================================ */
+@media (max-width: 768px) {
+  .home-hero h1 {
+    font-size: 2rem;
+  }
+}
+.card {
+  border-radius: 14px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+}
+
+
+
+
+
