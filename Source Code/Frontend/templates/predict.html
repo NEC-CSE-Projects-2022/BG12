@@ -1,0 +1,169 @@
+{% extends "base.html" %}
+{% block content %}
+
+<style>
+.risk-wrap {
+  min-height: 100vh;
+  background: radial-gradient(circle at top, #eef1ff, #f7f8fc);
+  padding: 50px 15px;
+  font-family: "Segoe UI", system-ui, sans-serif;
+}
+
+.risk-report {
+  max-width: 900px;
+  margin: auto;
+  background: white;
+  border-radius: 24px;
+  box-shadow: 0 25px 60px rgba(70, 96, 228, 0.25);
+}
+
+.risk-header {
+  background: linear-gradient(135deg, #4660e4, #6f85ff);
+  color: white;
+  padding: 30px;
+  text-align: center;
+}
+
+.risk-body {
+  padding: 35px;
+}
+
+/* INPUT */
+.form-control {
+  height: 36px;
+  font-size: 14px;
+  border-radius: 10px;
+  border: 1px solid #d6dcff;
+}
+
+/* RESULT */
+.result-box {
+  margin-top: 25px;
+  padding: 20px;
+  border-radius: 18px;
+  text-align: center;
+  font-size: 22px;
+  font-weight: 700;
+}
+
+.result-warning {
+  background: #fff3cd;
+  color: #856404;
+  border: 2px solid #ffc107;
+}
+
+.result-positive {
+  background: #fdecea;
+  color: #dc3545;
+  border: 2px solid #dc3545;
+}
+
+.result-negative {
+  background: #edf2ff;
+  color: #2536a3;
+  border: 2px solid #4660e4;
+}
+</style>
+
+<div class="risk-wrap">
+<div class="risk-report">
+
+<div class="risk-header">
+  <h2>Heart Disease Prediction</h2>
+  <p>Enter clinical values to predict heart disease</p>
+</div>
+
+<div class="risk-body">
+
+<form method="post" action="{{ url_for('predict') }}" id="heartForm" novalidate>
+
+<div class="row">
+
+<!-- LEFT -->
+<div class="col-md-6">
+
+{% macro field(label,name,min,max,step='1') %}
+<div class="form-group">
+<label>{{label}}</label>
+<input type="number" name="{{name}}" class="form-control"
+       min="{{min}}" max="{{max}}" step="{{step}}">
+</div>
+{% endmacro %}
+
+{{ field("Age","age",1,100) }}
+{{ field("Sex (0-1)","sex",0,1) }}
+{{ field("cp (0-3)","cp",0,3) }}
+{{ field("trestbps","trestbps",80,200) }}
+{{ field("chol","chol",100,600) }}
+{{ field("fbs (0-1)","fbs",0,1) }}
+
+</div>
+
+<!-- RIGHT -->
+<div class="col-md-6">
+
+{{ field("restecg (0-2)","restecg",0,2) }}
+{{ field("thalach","thalach",60,220) }}
+{{ field("exang (0-1)","exang",0,1) }}
+{{ field("oldpeak","oldpeak",0,10,"0.1") }}
+{{ field("slope (0-2)","slope",0,2) }}
+{{ field("ca (0-3)","ca",0,3) }}
+{{ field("thal (1-3)","thal",1,3) }}
+
+</div>
+
+</div>
+
+<div class="text-center mt-4">
+<button class="btn btn-primary">Predict</button>
+<button class="btn btn-secondary" type="reset">Reset</button>
+</div>
+
+</form>
+
+<!-- RESULT DISPLAY -->
+<div id="resultArea">
+
+{% if result %}
+  {% if "NO" in result.label or "No" in result.label %}
+    <div class="result-box result-negative">
+      ✅ {{ result.label }}
+    </div>
+  {% else %}
+    <div class="result-box result-positive">
+      ⚠️ {{ result.label }}
+    </div>
+  {% endif %}
+{% endif %}
+
+</div>
+
+</div>
+</div>
+</div>
+
+<script>
+document.getElementById("heartForm").addEventListener("submit", function(e){
+
+  const inputs = document.querySelectorAll(".form-control");
+  let empty = false;
+
+  inputs.forEach(input => {
+    if(input.value === ""){
+      empty = true;
+    }
+  });
+
+  if(empty){
+    e.preventDefault();
+
+    document.getElementById("resultArea").innerHTML = `
+      <div class="result-box result-warning">
+        ⚠️ Please enter the values
+      </div>`;
+  }
+
+});
+</script>
+
+{% endblock %}

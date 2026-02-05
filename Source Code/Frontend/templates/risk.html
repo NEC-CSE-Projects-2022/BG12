@@ -1,0 +1,267 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<style>
+.risk-wrap {
+  min-height: 100vh;
+  background: radial-gradient(circle at top, #eef1ff, #f7f8fc);
+  padding: 50px 15px;
+  font-family: "Segoe UI", system-ui, sans-serif;
+}
+
+.risk-report {
+  max-width: 780px;
+  margin: auto;
+  background: #ffffff;
+  border-radius: 24px;
+  box-shadow: 0 25px 60px rgba(70, 96, 228, 0.25);
+  overflow: hidden;
+}
+
+.risk-header {
+  background: linear-gradient(135deg, #4660e4, #6f85ff);
+  color: white;
+  padding: 30px;
+  text-align: center;
+}
+
+.risk-body {
+  padding: 35px;
+}
+
+.risk-field {
+  margin-bottom: 22px;
+}
+
+.risk-field label {
+  font-weight: 600;
+  display: block;
+  margin-bottom: 6px;
+}
+
+.risk-field select {
+  width: 100%;
+  height: 48px;
+  border-radius: 14px;
+  border: 1px solid #d6dcff;
+  padding: 0 14px;
+}
+
+/* ===== SMALL DYNAMIC BUTTON ===== */
+.risk-btn {
+  padding: 8px 20px;
+  font-size: 14px;
+  font-weight: 600;
+  border-radius: 25px;
+  text-decoration: none;
+  display: inline-block;
+  margin-top: 15px;
+  color: white;
+}
+
+/* Button Colors */
+.btn-yellow {
+  background: #ffc107;
+  color: black;
+}
+
+.btn-red {
+  background: #dc3545;
+}
+
+/* ===== SCORE BAR ===== */
+.score-box {
+  margin-top: 30px;
+  display: none;
+}
+
+.score-bar {
+  height: 20px;
+  background: #e2e6ff;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.score-fill {
+  height: 100%;
+  width: 0%;
+  transition: width 0.6s ease;
+}
+
+/* ===== RESULT COLORS ===== */
+.result-card {
+  margin-top: 25px;
+  padding: 25px;
+  border-radius: 18px;
+}
+
+.result-low {
+  background: #e7f1ff;
+  color: green;
+}
+
+.result-mid {
+  background: #fff8e1;
+  color: #ff9800;
+}
+
+.result-high {
+  background: #fdecea;
+  color: #dc3545;
+}
+</style>
+
+<div class="risk-wrap">
+  <div class="risk-report">
+
+    <div class="risk-header">
+      <h2>Daily Habits Health Report</h2>
+      <p>Based on your routine activities</p>
+    </div>
+
+    <div class="risk-body">
+      <form id="lifestyleForm" onsubmit="checkLifestyleRisk(event)">
+
+        <div class="risk-field">
+          <label>Smoking</label>
+          <select required>
+            <option value="" disabled selected>Select</option>
+            <option value="0">Non-smoker</option>
+            <option value="1">Occasional</option>
+            <option value="2">Regular</option>
+          </select>
+        </div>
+
+        <div class="risk-field">
+          <label>Alcohol Intake</label>
+          <select required>
+            <option value="0">Rarely</option>
+            <option value="1">Moderate</option>
+            <option value="2">Frequent</option>
+          </select>
+        </div>
+
+        <div class="risk-field">
+          <label>Physical Activity</label>
+          <select required>
+            <option value="0">Regular</option>
+            <option value="1">Sometimes</option>
+            <option value="2">Rarely</option>
+          </select>
+        </div>
+
+        <div class="risk-field">
+          <label>Diet</label>
+          <select required>
+            <option value="0">Healthy</option>
+            <option value="1">Mixed</option>
+            <option value="2">Unhealthy</option>
+          </select>
+        </div>
+
+        <div class="risk-field">
+          <label>Sleep Pattern</label>
+          <select required>
+            <option value="0">Good</option>
+            <option value="1">Moderate</option>
+            <option value="2">Poor</option>
+          </select>
+        </div>
+
+        <div class="risk-field">
+          <label>Stress Level</label>
+          <select required>
+            <option value="0">Low</option>
+            <option value="1">Moderate</option>
+            <option value="2">High</option>
+          </select>
+        </div>
+
+        <button class="risk-btn" type="submit" style="background:#4660e4;">
+          Generate Report
+        </button>
+
+      </form>
+
+      <div class="score-box" id="scoreBox">
+        <p><strong>Lifestyle Risk Score</strong></p>
+        <div class="score-bar">
+          <div class="score-fill" id="scoreFill"></div>
+        </div>
+      </div>
+
+      <div id="result"></div>
+
+    </div>
+  </div>
+</div>
+
+<script>
+function checkLifestyleRisk(e) {
+  e.preventDefault();
+
+  const selects = document.querySelectorAll("#lifestyleForm select");
+  const weights = [2,1,2,1,1,1];
+  let score = 0;
+
+  for (let i = 0; i < selects.length; i++) {
+    score += parseInt(selects[i].value) * weights[i];
+  }
+
+  const percent = Math.min((score / 12) * 100, 100);
+
+  const scoreBox = document.getElementById("scoreBox");
+  const fill = document.getElementById("scoreFill");
+  const result = document.getElementById("result");
+
+  scoreBox.style.display = "block";
+  fill.style.width = percent + "%";
+
+  /* LOW */
+  if (score <= 5) {
+
+    fill.style.background = "#0d6efd";
+
+    result.innerHTML = `
+      <div class="result-card result-low">
+        <h4>Low Risk</h4>
+        <p>Your lifestyle habits are healthy.</p>
+      </div>`;
+  }
+
+  /* MODERATE */
+  else if (score <= 10) {
+
+    fill.style.background = "#ffc107";
+
+    result.innerHTML = `
+      <div class="result-card result-mid">
+        <h4>Moderate Risk</h4>
+        <p>Some habits need improvement.</p>
+
+        <a href="{{ url_for('predict') }}" class="risk-btn btn-yellow">
+          Go to Prediction
+        </a>
+      </div>`;
+  }
+
+  /* HIGH */
+  else {
+
+    fill.style.background = "#dc3545";
+
+    result.innerHTML = `
+      <div class="result-card result-high">
+        <h4>High Risk</h4>
+        <p>Your lifestyle shows high risk.</p>
+
+        <a href="{{ url_for('predict') }}" class="risk-btn btn-red">
+          Go to Prediction
+        </a>
+      </div>`;
+  }
+}
+</script>
+
+{% endblock %}

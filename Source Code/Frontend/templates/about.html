@@ -1,0 +1,167 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="home-hero-my">
+  <div class="container" style="text-align: center;">
+    <div class="row align-items-center">
+
+      <!-- LEFT: Text + CTAs -->
+      <div class="col-lg-7">
+        <h3 class="display-4 font-weight-bold mb-3">About HeartPredict</h3>
+        <p class="lead text-muted mb-4">
+         HeartPredict is a web-based medical decision support system that estimates the probability of heart disease using Machine Learning and Deep Learning models.
+        </p>
+        <p>
+            The system is trained using the well-known Cleveland Heart Disease dataset and applies
+            advanced preprocessing techniques such as normalization, feature scaling, and missing
+            value handling to ensure reliable predictions.
+          </p>
+
+         
+
+
+
+
+        
+      </div>
+      <div class="col-lg-5 d-none d-lg-flex justify-content-center align-items-center">
+  <div class="hero-image-wrap">
+    <img src="{{ url_for('static', filename='img2.avif') }}"
+         alt="Heart visual"
+         class="hero-image shadow-sm"
+         style="width: 100%; max-width: 520px; height: 300px;">
+  </div>
+</div>
+
+
+
+
+    </div>
+  </div>
+</section
+
+
+
+    
+
+      
+    <!-- ================= PROJECT STATS ================= -->
+    <div class="row text-center mb-5">
+
+
+      <div class="col-md-3 mb-3">
+        <div class="card shadow-sm p-3 border-0">
+          <h3 class="font-weight-bold text-primary">🔬 Clinically relevant medical parameters</h3>
+          
+        </div>
+      </div>
+
+      <div class="col-md-3 mb-3">
+        <div class="card shadow-sm p-3 border-0">
+          <h3 class="font-weight-bold text-success">🧠 Machine Learning + Deep Learning models</h3>
+          
+        </div>
+      </div>
+
+      <div class="col-md-3 mb-3">
+        <div class="card shadow-sm p-3 border-0">
+          <h3 class="font-weight-bold text-info">⚙️ End-to-end automated preprocessing pipeline</h3>
+          
+        </div>
+      </div>
+
+      <div class="col-md-3 mb-3">
+        <div class="card shadow-sm p-3 border-0">
+          <h3 class="font-weight-bold text-warning">⚡ Real-time prediction through web interface</h3>
+          
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<!-- ================= MODEL COMPARISON GRAPH ================= -->
+<section class="py-5 bg-light">
+  <div class="container">
+
+    <div class="text-center mb-5">
+      <h2 class="h3">Model Performance Comparison</h2>
+      <p class="text-muted">Visual accuracy comparison (example values)</p>
+    </div>
+
+    <div class="row">
+
+      <!-- Random Forest -->
+      <div class="col-md-4 mb-4">
+        <div class="card p-4 shadow-sm border-0">
+          <h6 class="mb-2"><i class="fas fa-tree text-success mr-2"></i>Random Forest</h6>
+          <div class="progress">
+            <div class="progress-bar bg-success" style="width: 92%">92%</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Logistic Regression -->
+      <div class="col-md-4 mb-4">
+        <div class="card p-4 shadow-sm border-0">
+          <h6 class="mb-2"><i class="fas fa-chart-line text-primary mr-2"></i>Logistic Regression</h6>
+          <div class="progress">
+            <div class="progress-bar bg-primary" style="width: 86%">86%</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Deep Learning -->
+      <div class="col-md-4 mb-4">
+        <div class="card p-4 shadow-sm border-0">
+          <h6 class="mb-2"><i class="fas fa-brain text-danger mr-2"></i>Deep Learning</h6>
+          <div class="progress">
+            <div class="progress-bar bg-danger" style="width: 95%">95%</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<!-- ================= TESTIMONIALS ================= -->
+<section class="py-5">
+  <div class="container">
+
+    <div class="text-center mb-5">
+      <h2 class="h3">Our Team Members</h2>
+      
+    </div>
+
+    <div class="row">
+
+      <div class="col-md-4 mb-4">
+        <div class="step p-4 text-center h-100">
+          <h5>“Vatram Bhavana”</h5>
+          <p class="text-muted small">Project planning and coordination, model design, preprocessing strategy, training and evaluation of the Residual Attention–BiLSTM model, final documentation.</p>
+        </div>
+      </div>
+
+      <div class="col-md-4 mb-4">
+        <div class="step p-4 text-center h-100">
+          <h5>“Azhar Shaik Mothad”</h5>
+          <p class="text-muted small">Dataset analysis, Exploratory Data Analysis (EDA), feature preprocessing, implementation support, and result validation</p>
+        </div>
+      </div>
+
+      <div class="col-md-4 mb-4">
+        <div class="step p-4 text-center h-100">
+          <h5>“Shaik Afreen Neha”</h5>
+          <p class="text-muted small">Literature survey, paper reference study, report writing support, testing analysis, and presentation preparation.</p>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+{% endblock %}
