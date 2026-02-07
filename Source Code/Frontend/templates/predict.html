@@ -1,3 +1,4 @@
+
 {% extends "index.html" %}
 {% block content %}
 
@@ -28,7 +29,6 @@
   padding: 35px;
 }
 
-/* INPUT */
 .form-control {
   height: 36px;
   font-size: 14px;
@@ -36,7 +36,12 @@
   border: 1px solid #d6dcff;
 }
 
-/* RESULT */
+.error-text {
+  color: red;
+  font-size: 13px;
+  margin-top: 4px;
+}
+
 .result-box {
   margin-top: 25px;
   padding: 20px;
@@ -83,10 +88,16 @@
 <div class="col-md-6">
 
 {% macro field(label,name,min,max,step='1') %}
-<div class="form-group">
+<div class="form-group mb-3">
 <label>{{label}}</label>
-<input type="number" name="{{name}}" class="form-control"
-       min="{{min}}" max="{{max}}" step="{{step}}">
+<input type="number"
+       name="{{name}}"
+       class="form-control"
+       min="{{min}}"
+       max="{{max}}"
+       step="{{step}}"
+       required>
+<div class="error-text"></div>
 </div>
 {% endmacro %}
 
@@ -111,7 +122,6 @@
 {{ field("thal (1-3)","thal",1,3) }}
 
 </div>
-
 </div>
 
 <div class="text-center mt-4">
@@ -123,7 +133,6 @@
 
 <!-- RESULT DISPLAY -->
 <div id="resultArea">
-
 {% if result %}
   {% if "NO" in result.label or "No" in result.label %}
     <div class="result-box result-negative">
@@ -135,36 +144,71 @@
     </div>
   {% endif %}
 {% endif %}
-
 </div>
 
 </div>
 </div>
 </div>
-
 <script>
+
+function validateField(input){
+  const group = input.closest(".form-group");
+  const errorDiv = group.querySelector(".error-text");
+
+  errorDiv.textContent = "";
+
+  if(input.value === ""){
+    errorDiv.textContent = "This field is required";
+    return false;
+  }
+
+  const value = parseFloat(input.value);
+  const min = parseFloat(input.min);
+  const max = parseFloat(input.max);
+
+  if(value < min){
+    errorDiv.textContent = `Minimum value is ${min}`;
+    return false;
+  }
+
+  if(value > max){
+    errorDiv.textContent = `Maximum value is ${max}`;
+    return false;
+  }
+
+  return true;
+}
+
+document.querySelectorAll(".form-control").forEach(input => {
+
+  // live validation while typing
+  input.addEventListener("input", function(){
+    validateField(this);
+  });
+
+});
+
 document.getElementById("heartForm").addEventListener("submit", function(e){
 
-  const inputs = document.querySelectorAll(".form-control");
-  let empty = false;
+  let valid = true;
 
-  inputs.forEach(input => {
-    if(input.value === ""){
-      empty = true;
+  document.querySelectorAll(".form-control").forEach(input => {
+    if(!validateField(input)){
+      valid = false;
     }
   });
 
-  if(empty){
+  if(!valid){
     e.preventDefault();
-
     document.getElementById("resultArea").innerHTML = `
       <div class="result-box result-warning">
-        ⚠️ Please enter the values
+        ⚠️ Please correct the highlighted fields
       </div>`;
   }
 
 });
+
 </script>
 
-{% endblock %}
 
+{% endblock %}
